@@ -4,7 +4,7 @@ An ATmega32-based parking system featuring keypad access, an LCD display, and al
 ## Modules
 
 ### App
-- **[main.c](App/main.c):** The main application file responsible for orchestrating program flow, managing the user interface, and handling interactions.
+- **[App](App/app.c):** The main application file responsible for orchestrating program flow, managing the user interface, and handling interactions.
 
 ### HAL (Hardware Abstraction Layer)
 - **[IR_SENSOR](HAL/IR_SENSOR/):** Manages the functionality of the Infrared (IR) sensor.
