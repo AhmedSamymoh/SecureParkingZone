@@ -21,7 +21,7 @@ uint16_t input_id = 0;
 volatile uint8_t flag = 0;
 
 
-
+uint8 * pointer = 0;
 
 void app(void)
 {
@@ -51,6 +51,7 @@ void app(void)
 
 void Home(){
 	static uint8 index = 0;
+	pointer = &index;
 	pressedKey = KEYPAD_GetPressedKey();
 	do
 	{
@@ -81,6 +82,7 @@ void Home(){
 	else
 	{
 		if(pressedKey == 'c'){
+			index = 0;
 			Check();
 		}
 		_delay_ms(50);
@@ -99,6 +101,7 @@ uint16_t cal(uint8 base){
 		return 10;
 	if (base == 3)
 		return 1;
+	return 0;
 }
 
 uint16_t pow(uint8 base , uint8 exponent){
@@ -112,14 +115,30 @@ uint16_t pow(uint8 base , uint8 exponent){
 }
 void Check(){
 	if(input_id == right_id){
-		TIMER1_Set_OCR_Value(700);
+		*pointer = 0;
+
+		TIMER1_Set_OCR_Value(650);
 		LCD_4Bit_Send_Command(_LCD_CLEAR);
 		LCD_4Bit_Write_String_Position("Welcome, Sir" , 1 ,3);
 		_delay_ms(1500);
 		while(!flag);
 		flag = 0;
+		if(*ptr <= 3){
+			LCD_4Bit_Write_String_Position("Parking Area", 1, 1);
+			LCD_4Bit_Write_String_Position("left:" , 2, 1);
+			LCD_4Bit_Send_Number(3 - *ptr);
+			_delay_ms(1000);
+			LCD_4Bit_Send_Command(_LCD_CLEAR);
+		}else if(*ptr >= 4 ) {
+			while(1){
+				TIMER1_Set_OCR_Value(2500);
+				LCD_4Bit_Write_String_Position("Sorry Sir, the", 1, 1);
+				LCD_4Bit_Write_String_Position("Garage is FULL !!", 2, 1);
+			}
+		}
 		_delay_ms(1000);
 		TIMER1_Set_OCR_Value(2500);
+		input_id = 0;
 		EntryMsg();
 		Home();
 	}else{
@@ -198,19 +217,19 @@ void AlarmCall(){
 	}
 }
 
-volatile void ISR__(){
+void ISR__(){
 	static uint8 x = 0;
 	static uint8 count = 0;
 	if(x % 2){
 		count++;
+		DIO_SetPinValue(PORT_B , PIN_5, PIN_HIGH);
+		_delay_ms(200);
+		DIO_SetPinValue(PORT_B , PIN_5, PIN_LOW);
+		_delay_ms(200);
+		LCD_4Bit_Send_Command(_LCD_CLEAR);
 	}
-	DIO_SetPinValue(PORT_B , PIN_5, PIN_HIGH);
-	_delay_ms(200);
-	DIO_SetPinValue(PORT_B , PIN_5, PIN_LOW);
-	_delay_ms(200);
 	x++;
 	ptr = &count;
 	flag = 1;
-//	LCD_4Bit_Set_Cursor(1 ,16);
-//	LCD_4Bit_Send_Number(*ptr);
+
 }

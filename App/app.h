@@ -7,6 +7,7 @@
 
 #ifndef APP_APP_H_
 #define APP_APP_H_
+
 #include "../MCAL/DIO/DIO_interface.h"
 #include "../MCAL/EXTI/EXTI_interface.h"
 #include "../MCAL/ADC/ADC_interface.h"
