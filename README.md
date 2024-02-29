@@ -1,6 +1,7 @@
 # SecureParkingZone
 An ATmega32-based parking system featuring keypad access, an LCD display, and alarm functionalities. It incorporates IR sensor utilization, PWM control, and secure ID entry.
-  ![Proteus](/App/p.png)
+
+![P](/App/P.png)
 
 ### Hardware Test Video :
   (Link): [drive.google.com/file/d/1L0I4FkAT](https://drive.google.com/file/d/1L0I4FkAT0mFpcvqkXXb6IjquDgcDakBg/view?usp=sharing)
