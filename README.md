@@ -4,7 +4,7 @@ An ATmega32-based parking system featuring keypad access, an LCD display, and al
 ![P](/App/p.jpg)
 
 ### Hardware Test Video :
-  (Link): [drive.google.com/file/d/1L0I4FkAT](https://drive.google.com/file/d/1L0I4FkAT0mFpcvqkXXb6IjquDgcDakBg/view?usp=sharing)
+  (Link): [drive.google.com/file/d/1Ly7a](https://drive.google.com/file/d/1Ly7a-X7x-_j0GDA0TU-1OBlJdExJvFeo/view?usp=sharing)
 
 
 ## Modules
